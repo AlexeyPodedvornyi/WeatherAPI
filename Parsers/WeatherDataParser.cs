@@ -6,11 +6,11 @@ using WeatherAPI.Parsers.Interfaces;
 
 namespace WeatherAPI.Parsers
 {
-    public class WeatherDataParser: IJsonParser
+    public class WeatherDataParser: IWeatherDataParser
     {
         public WeatherForecast ParseFrom(string data)
         {
-            if(string.IsNullOrEmpty(data))
+            if (string.IsNullOrEmpty(data))
                 throw new ArgumentNullException(nameof(data));
 
             var jsonObject = JObject.Parse(data);

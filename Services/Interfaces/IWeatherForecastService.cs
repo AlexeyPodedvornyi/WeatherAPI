@@ -2,6 +2,7 @@
 {
     public interface IWeatherForecastService
     {
+        Task<string> GetCurrentWeatherAsync(string cityName);
 
     }
 }
