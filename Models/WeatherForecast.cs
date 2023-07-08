@@ -6,18 +6,21 @@ namespace WeatherAPI.Models
     public class WeatherForecast
     {
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
+
+        [JsonProperty("temp")]
+        public double? Temperature { get; set; }
 
         [JsonProperty("temp_min")]
-        public int? TemperatureMin { get; set; }
+        public double? TemperatureMin { get; set; }
 
         [JsonProperty("temp_max")]
-        public int? TemperatureMax { get; set; }
+        public double? TemperatureMax { get; set; }
 
         [JsonProperty("wind_speed")]
-        public double? WindSpeed { get; set; }
+        public double WindSpeed { get; set; }
 
-        [JsonProperty("cloudiness")]
-        public string? Ñloudiness { get; set; }
+        [JsonProperty("clouds")]
+        public int Ñlouds { get; set; }
     }
 }

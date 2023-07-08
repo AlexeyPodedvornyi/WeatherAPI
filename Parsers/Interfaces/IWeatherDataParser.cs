@@ -1,6 +1,8 @@
-﻿namespace WeatherAPI.Parsers.Interfaces
+﻿using WeatherAPI.Models;
+
+namespace WeatherAPI.Parsers.Interfaces
 {
-    public interface IWeatherDataParser : IJsonParser
+    public interface IWeatherDataParser : IJsonParser<string, WeatherForecast>
     {
     }
 }
