@@ -3,6 +3,12 @@ using WeatherAPI.Parsers;
 using WeatherAPI.Parsers.Interfaces;
 using WeatherAPI.Services;
 using WeatherAPI.Services.Interfaces;
+using Swashbuckle.AspNetCore.Filters;
+using WeatherAPI.Serializer.Interfaces;
+using WeatherAPI.Models.Responses.Interfaces;
+using WeatherAPI.Serializer;
+using WeatherAPI.Factories.Interfaces;
+using WeatherAPI.Factories;
 
 namespace WeatherAPI
 {
@@ -19,17 +25,21 @@ namespace WeatherAPI
         {
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
+                options.ExampleFilters();
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                options.IncludeXmlComments(xmlPath);
+                
             });
+            services.AddSwaggerExamplesFromAssemblyOf<Startup>();
             services.AddCors();
 
             services.AddScoped<IWeatherDataParser, WeatherDataParser>();
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
-            services.AddScoped<HttpClient>();
+            services.AddScoped<IResponseModelSerializer<IResponseModel>, ResponseModelSerializer>();
+            services.AddScoped<IErrorResponseModelFactory, ErrorResponseModelFactory>();
             services.AddScoped<HttpClient>();
         }
 

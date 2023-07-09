@@ -58,7 +58,6 @@ namespace WeatherAPI.Services
             if (!response.IsSuccessStatusCode)
             {
                 return (response.StatusCode, responseContent);
-
             }
 
             List<WeatherForecast> parsedList;
